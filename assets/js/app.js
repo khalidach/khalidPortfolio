@@ -26,7 +26,7 @@ let emailPattern = /^[a-zA-Z0-9.]+@gmail\.com$/;
 let fullNamePattern = /^[a-zA-Z]+ [a-zA-Z]+$/;
 
 function emailValidate() {
-  if (!emailPattern.test(emailInput.value)) {
+  if (!emailPattern.test(emailInput.value.trim())) {
     emailInput.style.borderColor = "red";
     errMsg[1].textContent = "please entre valid email : example@gmail.com";
     errMsg[1].style.transform = "translateX(0)";
@@ -55,7 +55,7 @@ function messageValidate() {
 }
 
 function validateFullName() {
-  if (!fullNamePattern.test(fullNameInput.value)) {
+  if (!fullNamePattern.test(fullNameInput.value.trim())) {
     fullNameInput.style.borderColor = "red";
     errMsg[0].textContent = "please entre your full name ex: john doe";
     errMsg[0].style.transform = "translateX(0)";
@@ -71,8 +71,8 @@ function validateFullName() {
 
 function submitForm(event) {
   event.preventDefault();
-  const isFullNameValid = fullNamePattern.test(fullNameInput.value);
-  const isEmailValid = emailPattern.test(emailInput.value);
+  const isFullNameValid = fullNamePattern.test(fullNameInput.value.trim());
+  const isEmailValid = emailPattern.test(emailInput.value.trim());
   const isMessageValid = messageInput.value !== "";
 
   let toaster = document.querySelector(".toasterMessage");
@@ -122,9 +122,10 @@ hamburger.addEventListener("click", () => {
   hamburger.classList.toggle("is-active");
   mobileMenu.classList.toggle("is-active");
   if (mobileMenu.classList.contains("is-active")) {
-    document.body.classList.add("no-scroll");
+    document.body.style.overflowY = "hidden";
   } else {
-    document.body.classList.remove("no-scroll");
+    // Adding a small delay before removing the class
+    document.body.style.overflowY = "scroll";
   }
 });
 
