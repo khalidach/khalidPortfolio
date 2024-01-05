@@ -117,24 +117,17 @@ messageInput.addEventListener("blur", messageValidate);
 // hamburger-menu
 let hamburger = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-nav");
-const mobileNav = document.querySelectorAll(".mobile-nav li a");
-hamburger.addEventListener("click", () => {
+const mobileNav = document.querySelectorAll(".mobile-nav li");
+function toggleMobileMenu() {
   hamburger.classList.toggle("is-active");
   mobileMenu.classList.toggle("is-active");
-  if (mobileMenu.classList.contains("is-active")) {
-    document.body.style.overflowY = "hidden";
-  } else {
-    // Adding a small delay before removing the class
-    document.body.style.overflowY = "scroll";
-  }
-});
-
-// thi
+  document.body.style.overflowY = mobileMenu.classList.contains("is-active")
+    ? "hidden"
+    : "scroll";
+}
+hamburger.addEventListener("click", toggleMobileMenu);
 mobileNav.forEach((link) => {
-  link.addEventListener("click", () => {
-    hamburger.classList.remove("is-active");
-    mobileMenu.classList.remove("is-active");
-  });
+  link.addEventListener("click", toggleMobileMenu);
 });
 
 // scroll to section
