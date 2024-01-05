@@ -117,7 +117,7 @@ messageInput.addEventListener("blur", messageValidate);
 // hamburger-menu
 let hamburger = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-nav");
-const mobileNav = document.querySelectorAll(".mobile-nav li");
+const mobileNav = document.querySelectorAll(".mobile-nav li a");
 hamburger.addEventListener("click", () => {
   hamburger.classList.toggle("is-active");
   mobileMenu.classList.toggle("is-active");
